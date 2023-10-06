@@ -4,7 +4,8 @@ import { AppComponent } from './app.component';
 import { HomeGuard } from './home.guard';
 
 const routes: Routes = [
-  { path: '', component: AppComponent,canActivate: [HomeGuard] } // base route
+  { path: 'home', component: AppComponent,canActivate: [HomeGuard] },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
