@@ -36,6 +36,8 @@
           },
           "configurations": {
             "production": {
+              "sourceMap": true, // this is to enable the source maps to get a better analysis
+              "namedChunks": true,
               "budgets": [
                 {
                   "type": "initial",
