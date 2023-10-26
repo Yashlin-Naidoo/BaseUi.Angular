@@ -22,10 +22,31 @@ export class AppComponent implements OnInit {
    }
 
    ngOnInit(): void {
+    this.getFileFromStorage();
+   }
+
+   getFileFromStorage(){
     const sessionObject = this.sessionStorageService.retrieveRequestObjectFromStorage();
     this.requestArray = sessionObject.requestData
     this.responseArray = sessionObject.responseData
    }
+
+   convertToJsonFile(){
+    const sessionObject = this.sessionStorageService.retrieveRequestObjectFromStorage();
+    const jsonString = JSON.stringify(sessionObject);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    return blob;
+   }
+
+   downloadRequestObject(){
+    const blob = this.convertToJsonFile();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'network_calls.json';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
 
   makeNetworkCallsInLoop(){
     for (let index = 0; index < 5; index++) {
