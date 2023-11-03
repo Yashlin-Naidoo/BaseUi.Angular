@@ -9,13 +9,15 @@ import { PostsComponent } from './components/posts/posts.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { HomeComponent } from './components/home/home.component';
 import { LargeListComponent } from './components/large-list/large-list.component';
+import { DateCalculationComponent } from './components/date-calculation/date-calculation.component';
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
     CommentsComponent,
     HomeComponent,
-    LargeListComponent
+    LargeListComponent,
+    DateCalculationComponent
   ],
   imports: [
     BrowserModule,
