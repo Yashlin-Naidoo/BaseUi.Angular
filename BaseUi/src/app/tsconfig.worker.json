@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/worker",
+    "baseUrl": "./",
+    "target": "es2015",
+    "types": []
+  },
+  "include": [
+    "src/**/*.worker.ts"
+  ]
+}

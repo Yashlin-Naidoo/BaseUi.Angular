@@ -15,14 +15,25 @@ export class CommentsComponent implements OnInit{
   sortDirection = ''; // Initialize sortDirection property
   complexCalculationInProgress: boolean = false;
   fibonacciResult: number = 0;
+  worker = new Worker(new URL('../../app.worker', import.meta.url));
   constructor(private http: HttpClient) {
     this.sortBy = '';
     this.sortDirection = 'asc'; // Assign sortDirection property in the constructor
+
+
+
   }
   ngOnInit(): void {
     this.getCommentsAndCalculate()
 
+    this.worker.postMessage("message");
+    this.worker.onmessage = ({ data }) => {
+
+      this.fibonacciResult = data;
+    };
   }
+
+
 
   getCommentsAndCalculate(){
     this.getAllComments().subscribe(data => {
@@ -44,7 +55,7 @@ export class CommentsComponent implements OnInit{
   }
 
   sort(column: string) {
-    this.startComplexCalculation()
+
     if (this.sortBy === column) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
@@ -62,25 +73,6 @@ export class CommentsComponent implements OnInit{
     });
   }
 
-  startComplexCalculation() {
-    this.complexCalculationInProgress = true;
 
-    // Simulate a complex calculation (calculating Fibonacci of 40)
-    this.fibonacciResult = this.fibonacci(40);
-
-    // Set a delay to make the browser appear unresponsive
-    setTimeout(() => {
-      this.complexCalculationInProgress = false;
-      console.log(`Complex calculation result: ${this.fibonacciResult}`);
-      return this.fibonacciResult;
-    }, 2000); // Delay for 2 seconds
-  }
-
-  fibonacci(n: number): number {
-    if (n <= 1) {
-      return n;
-    }
-    return this.fibonacci(n - 1) + this.fibonacci(n - 2);
-  }
 
 }

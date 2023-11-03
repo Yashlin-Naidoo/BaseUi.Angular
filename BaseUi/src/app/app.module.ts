@@ -10,6 +10,8 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { HomeComponent } from './components/home/home.component';
 import { LargeListComponent } from './components/large-list/large-list.component';
 import { DateCalculationComponent } from './components/date-calculation/date-calculation.component';
+import { ErrorHandler } from '@angular/core';
+import { ErrorHandlerService } from './services/error-handler.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,10 @@ import { DateCalculationComponent } from './components/date-calculation/date-cal
     provide: HTTP_INTERCEPTORS,
     useClass: LoggerInterceptor,
     multi: true,
-  }],
+  } ,{
+    provide: ErrorHandler,
+    useClass: ErrorHandlerService,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

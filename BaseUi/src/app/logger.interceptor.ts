@@ -17,6 +17,7 @@ export class LoggerInterceptor implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     const startTime = Date.now();
     // Modify the request here if needed
     const { body, method, responseType, url, urlWithParams } = req;
