@@ -1,0 +1,36 @@
+<button (click)="addItem()">Add Item</button>
+<br>
+<div>
+  <br>
+  <button (click)="updateData()">Update Data</button>
+  <br>
+  <br>
+  <input [value]="inputValue" />
+</div>
+<div>
+  <p>Data: {{ data }}</p>
+  <p>Input Value: {{ inputValue }}</p>
+</div>
+<hr>
+<div >
+  <table style="height: 300px;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Complex Field 1 (Factorial)</th>
+        <th>Complex Field 2 (Square)</th>
+        <th>Complex Field 3 (Cube)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ calculateComplexField2(item.calculatedField1) }}</td>
+        <td>{{ item.calculatedField2 }}</td>
+        <td>{{ item.calculatedField3 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,24 @@
+<button type="button" (click)="getCommentsAndCalculate()" style="margin:0.5%;">Download Network Data</button>
+
+<!-- <p>Complex calculation result: {{ startComplexCalculation()}}</p> -->
+<table>
+  <thead>
+    <tr>
+      <th (click)="sort('id')">ID</th>
+      <th (click)="sort('name')">Name</th>
+      <th (click)="sort('email')">Email</th>
+      <th (click)="sort('body')">Body</th>
+      <th (click)="sort('percentage')">Percentage of Total Characters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let comment of comments">
+      <td>{{ comment.id }}</td>
+      <td>{{ comment.name }}</td>
+      <td>{{ comment.email }}</td>
+      <td>{{ comment.body }}</td>
+      <td>{{ calculatePercentage(comment.body) | number:'1.2-2' }}%</td>
+    </tr>
+  </tbody>
+</table>
+
